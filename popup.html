@@ -1,15 +1,54 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
- <head>
-  <title> qrCode </title>
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
- </head>
+	<head>
+		<meta charset="utf-8">
+		<title> QRcode </title>
+		<meta name="Author" content="Sigma">
+		<meta name="Keywords" content="获取当前页面 URL 的二维码">
+		<meta name="Description" content="笃行天下 http://duxing.org">
+	</head>
+	<style type="text/css">
+		html,
+		body{
+			overflow: hidden;
+		}
+		body{
+			width: 300px;
+			height: 316px;
+    		margin-bottom: 2px;
+		}
+		@-webkit-keyframes sigma{
+			0%   {opacity:0;-webkit-transform:rotate(270deg) scale(2);}
+			100% {opacity:1;-webkit-transform:rotate(360deg) scale(1);}
+		}
+		@-webkit-keyframes AuthorInfo{
+			0%{opacity:0;}
+			100%{opacity:1;}
+		}
+		#qrcode{
+			-webkit-transform-origin:center;
+			-webkit-animation:sigma 1s;
+			overflow: hidden;
+		}
+		a{
+			text-decoration:none;
+			color:#e0e0e0;
+			font-family:"微软雅黑","黑体";
+			font-size:12px;
+			float:right;
+			-webkit-animation:AuthorInfo 2s;
+		}
+		a:hover{
+			color:#505050;
+		}
+	</style>
 
- <body>
- 	<img id="qrcode" />
- 	<a href="http://g8up.cn" target="_blank" title="笃行天下" style="text-decoration:none;color: gray; font-family: 宋体,雅黑,黑体; font-size: 12px; float: right; ">url2qrcode</a>
-<script src="g8up.cn.js"></script>
- </body>
+	<body>
+		<!-- <img id="qrcode" width="300" height="300"/> -->
+		<div id="qrcode" style="width:300px; height:300px;"></div>
+		<a href="http://duixng.org" target="_blank" title="笃行天下">duxing.org</a>
+
+		<script src="qrcode.min.js"></script>
+		<script src="g8up.cn.js"></script>
+	</body>
 </html>

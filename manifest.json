@@ -1,22 +1,19 @@
 {
-"manifest_version": 2,
+	"manifest_version": 2,
+	"default_locale": "en",
 	"browser_action": {
-		"default_icon" : "g8up.cn.png",
-		"default_title": "查看本页网址的二维码",
+		"default_icon": "g8up.cn.png",
+		"default_title": "__MSG_defaulttitle__",
 		"default_popup": "popup.html"
 	},
-	"icons"         :{
-		"128":"g8up.cn.png"
+	"icons": {
+		"128": "g8up-cn.png"
 	},
-	"name"          : "URL二维码",
-	"permissions"   : [ 
-								"tabs", 
-								"http://chart.googleapis.com/chart",
-								"http://*.g8up.cn/*",
-								"http://*.g8up.com/*",
-								"http://*.duxing.org/*"
-							],
-	"homepage_url"  :"http://t.qq.com/p/t/303238007155637",
-	"update_url":"http://xuediannao.sinaapp.com/chrome/url2qrcode/update.xml",
-	"version"       : "1.2.1"
+	"name": "__MSG_appName__",
+	"description": "__MSG_appDesc__",
+	"default_locale": "en",
+	"permissions": [
+		"tabs"
+	],
+	"version": "2.0.1"
 }
