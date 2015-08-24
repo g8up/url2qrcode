@@ -1,5 +1,17 @@
-chrome.tabs.getSelected(null, function (tab){
-	var url = "http://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|4&chl=" + tab.url;
-	// document.write('<img src="' + url + '">');
-	document.querySelector('#qrcode').src = url;
+function makeCode ( qrcode, text ) {
+
+	if ( typeof text === 'undefined' ) {
+		return;
+	}
+	qrcode.makeCode( text );
+}
+
+chrome.tabs.getSelected( null , function ( tab ){
+	var qrcode = document.querySelector('#qrcode');
+	var text = ( tab.url );
+	var qrcode = new QRCode( qrcode , {
+		width : 300,
+		height : 300
+	});
+	makeCode( qrcode, text );
 });
