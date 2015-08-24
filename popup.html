@@ -4,13 +4,22 @@
 		<meta charset="utf-8">
 		<title> QRcode </title>
 		<meta name="Author" content="Sigma">
-		<meta name="Keywords" content="获取当前页面URL的二维码">
-		<meta name="Description" content="笃行天下http://www.g8up.cn">
+		<meta name="Keywords" content="获取当前页面 URL 的二维码">
+		<meta name="Description" content="笃行天下 http://duxing.org">
 	</head>
 	<style type="text/css">
+		html,
+		body{
+			overflow: hidden;
+		}
+		body{
+			width: 300px;
+			height: 316px;
+    		margin-bottom: 2px;
+		}
 		@-webkit-keyframes sigma{
-			0%   {opacity:0;-webkit-transform:rotate(0deg);}
-			100% {opacity:1;-webkit-transform:rotate(360deg);}
+			0%   {opacity:0;-webkit-transform:rotate(270deg) scale(2);}
+			100% {opacity:1;-webkit-transform:rotate(360deg) scale(1);}
 		}
 		@-webkit-keyframes AuthorInfo{
 			0%{opacity:0;}
@@ -18,7 +27,7 @@
 		}
 		#qrcode{
 			-webkit-transform-origin:center;
-			-webkit-animation:sigma 2s;
+			-webkit-animation:sigma 1s;
 			overflow: hidden;
 		}
 		a{
@@ -27,7 +36,7 @@
 			font-family:"微软雅黑","黑体";
 			font-size:12px;
 			float:right;
-			-webkit-animation:AuthorInfo 3s;
+			-webkit-animation:AuthorInfo 2s;
 		}
 		a:hover{
 			color:#505050;
@@ -37,7 +46,7 @@
 	<body>
 		<!-- <img id="qrcode" width="300" height="300"/> -->
 		<div id="qrcode" style="width:300px; height:300px;"></div>
-		<a href="http://g8up.cn" target="_blank" title="笃行天下">g8up.cn</a>
+		<a href="http://duixng.org" target="_blank" title="笃行天下">duxing.org</a>
 
 		<script src="qrcode.min.js"></script>
 		<script src="g8up.cn.js"></script>

@@ -13,10 +13,7 @@
 	"description": "__MSG_appDesc__",
 	"default_locale": "en",
 	"permissions": [
-		"tabs",
-		"http://*.g8up.cn/*",
-		"http://*.g8up.com/*",
-		"http://*.duxing.org/*"
+		"tabs"
 	],
-	"version": "2.0.0"
+	"version": "2.0.1"
 }
