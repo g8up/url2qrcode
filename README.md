@@ -8,4 +8,4 @@ Chrome Extension: URL转二维码
 
 ## Installation ##
 
-[Chrome Web Store](https://chrome.google.com/webstore/detail/acedjabgpolnckckknijpejicghpfbnj/publish-delayed?hl=zh-CN "Chrome Web Store")
+[Chrome Web Store](https://chrome.google.com/webstore/detail/acedjabgpolnckckknijpejicghpfbnj "Chrome Web Store")
