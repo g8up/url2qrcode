@@ -6,6 +6,7 @@
 		"default_title": "__MSG_defaulttitle__",
 		"default_popup": "popup.html"
 	},
+	"options_page": "option.html",
 	"icons": {
 		"128": "g8up-cn.png"
 	},
@@ -15,5 +16,5 @@
 	"permissions": [
 		"tabs"
 	],
-	"version": "2.0.3"
+	"version": "2.1.0"
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Url2Qrcode</title>
+	<style>
+
+	:root{
+		--qrSquare: 400px;
+	}
+
+	section{
+		padding: 15px;
+	}
+	#qrcodeImg{
+		width: var(--qrSquare);
+		height: var(--qrSquare);
+		margin: 0 auto;
+	}
+	#anyText{
+		width: 80%;
+		height: 50px;
+		border-radius: 10px;
+		border: 1px solid gray;
+		padding: 10px 15px;
+		font-size: 3em;
+		outline: none;
+		margin:0 auto;
+	    display: block;
+	}
+	</style>
+</head>
+<body>
+<section>
+	<input id="anyText" type="text" placeholder="any text here" autofocus="true">
+</section>
+
+<section>
+	<div id="qrcodeImg"></div>
+</section>
+
+<script src="qrcode.min.js"></script>
+<script src="option.js"></script>
+
+</body>
+</html>
