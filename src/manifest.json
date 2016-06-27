@@ -12,7 +12,7 @@
 	"name": "__MSG_appName__",
 	"description": "__MSG_appDesc__",
 	"default_locale": "en",
-	"offline_enabled": false,
+	"offline_enabled": true,
 	"permissions": [
 		"tabs"
 	],
