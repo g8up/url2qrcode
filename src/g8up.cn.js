@@ -7,9 +7,9 @@ function makeCode ( qrcode, text ) {
 }
 
 chrome.tabs.getSelected( null , function ( tab ){
-	var qrcode = document.querySelector('#qrcode');
+	var $qrcode = document.querySelector('#qrcode');
 	var text = ( tab.url );
-	var qrcode = new QRCode( qrcode , {
+	var qrcode = new QRCode( $qrcode , {
 		width : 300,
 		height : 300
 	});
