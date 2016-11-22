@@ -13,8 +13,9 @@
 	"name": "__MSG_appName__",
 	"description": "__MSG_appDesc__",
 	"default_locale": "en",
+	"offline_enabled": true,
 	"permissions": [
 		"tabs"
 	],
-	"version": "2.1.0"
+	"version": "2.1.1"
 }

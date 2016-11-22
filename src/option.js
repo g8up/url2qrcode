@@ -6,6 +6,7 @@ var qrcode = new QRCode( $qrcodeImg , {
 
 function genQrcode( text ){
 	qrcode.makeCode( text );
+	$qrcodeImg.classList.toggle('rotate');
 }
 
 var $anyText = document.querySelector('#anyText');
