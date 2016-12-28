@@ -6,7 +6,7 @@
 	<style>
 
 	:root{
-		--qrSquare: 400px;
+		--qrSquare: 300px;
 	}
 
 	section{
@@ -16,17 +16,21 @@
 		width: var(--qrSquare);
 		height: var(--qrSquare);
 		margin: 0 auto;
+		transition: transform .3s;
 	}
 	#anyText{
 		width: 80%;
 		height: 50px;
 		border-radius: 10px;
-		border: 1px solid gray;
-		padding: 10px 15px;
+		border: 1px solid #ddd;
+		padding: 10px 16px;
 		font-size: 3em;
 		outline: none;
 		margin:0 auto;
-	    display: block;
+		display: block;
+	}
+	.rotate{
+		transform: rotateZ(360deg);
 	}
 	</style>
 </head>
