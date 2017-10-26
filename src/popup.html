@@ -3,9 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title> QRcode </title>
-		<meta name="Author" content="Sigma">
-		<meta name="Keywords" content="获取当前页面 URL 的二维码">
-		<meta name="Description" content="笃行天下 http://duxing.org">
+		<meta name="description" content="获取当前页面 URL 的二维码">
+		<meta name="author" content="getcrx.cn">
 	</head>
 	<style type="text/css">
 		html,
@@ -13,9 +12,7 @@
 			overflow: hidden;
 		}
 		body{
-			width: 300px;
-			height: 316px;
-    		margin-bottom: 2px;
+			margin-bottom: 2px;
 		}
 		@-webkit-keyframes sigma{
 			0%   {opacity:0.2;-webkit-transform:rotate(270deg) scale(2);}
@@ -42,11 +39,13 @@
 		a.mysite:hover{
 			color:#505050;
 		}
+		:root{
+			--size: 300px;
+		}
 	</style>
 
 	<body>
-		<!-- <img id="qrcode" width="300" height="300"/> -->
-		<div id="qrcode" style="width:300px; height:300px;"></div>
+		<div id="qrcode"></div>
 		<a class="mysite" href="http://getcrx.cn" target="_blank">getcrx.cn</a>
 
 		<script src="qrcode.min.js"></script>

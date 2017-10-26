@@ -1,17 +1,21 @@
-function makeCode ( qrcode, text ) {
-
-	if ( typeof text === 'undefined' ) {
+function makeCode(qrcode, text) {
+	if (typeof text === 'undefined') {
 		return;
 	}
-	qrcode.makeCode( text );
+	qrcode.makeCode(text);
 }
 
-chrome.tabs.getSelected( null , function ( tab ){
+function getSize(){
+	return localStorage.getItem('qr-size') || 300;
+}
+
+chrome.tabs.getSelected(null, function (tab) {
 	var $qrcode = document.querySelector('#qrcode');
-	var text = ( tab.url );
-	var qrcode = new QRCode( $qrcode , {
-		width : 300,
-		height : 300
+	var text = (tab.url);
+	var size = parseInt( getSize(), 10);
+	var qrcode = new QRCode($qrcode, {
+		width: size,
+		height: size
 	});
-	makeCode( qrcode, text );
+	makeCode(qrcode, text);
 });

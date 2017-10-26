@@ -32,6 +32,11 @@
 	.rotate{
 		transform: rotateZ(360deg);
 	}
+	#sizeRange{
+		width: 80vw;
+		display: block;
+		margin:0 auto;
+	}
 	</style>
 </head>
 <body>
@@ -41,6 +46,11 @@
 
 <section>
 	<div id="qrcodeImg"></div>
+</section>
+
+<section>
+	<div id="rangeResult"></div>
+	<input id="sizeRange" type="range" min="10" max="1000">
 </section>
 
 <script src="qrcode.min.js"></script>
