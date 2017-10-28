@@ -27,7 +27,9 @@ $sizeRange.addEventListener('input', function(e){
 	var y = e.pageY;
 	showSize( size , x, y);
 });
-showSize( getSize() );
+var curSize = getSize();
+$sizeRange.value = curSize;
+showSize( curSize );
 
 function genQrcode( text ){
 	qrcode.makeCode( text );

@@ -32,10 +32,19 @@
 	.rotate{
 		transform: rotateZ(360deg);
 	}
+	.range{
+		display: flex;
+		padding: 0 10vw;
+	}
+	#rangeResult{
+		font-size: 2em;
+		width: 200px;
+	}
 	#sizeRange{
 		width: 80vw;
 		display: block;
 		margin:0 auto;
+		flex: 1;
 	}
 	</style>
 </head>
@@ -48,7 +57,7 @@
 	<div id="qrcodeImg"></div>
 </section>
 
-<section>
+<section class="range">
 	<div id="rangeResult"></div>
 	<input id="sizeRange" type="range" min="10" max="1000">
 </section>
