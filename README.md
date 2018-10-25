@@ -10,6 +10,8 @@ URL 转二维码 (Chrome Extension)
 - 一键将当前网址转二维码
 - 选项页任意文本转二维码
 - 支持离线转换
+- 开启扫码功能依赖的`BarcodeDetector`接口：`chrome://flags/#enable-experimental-web-platform-features`
+
 
 ## Installation ##
 
