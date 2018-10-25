@@ -30,6 +30,21 @@ const createImage = ( url )=>{
   return img;
 };
 
+const echo = ( text )=> {
+  if( text.startsWith('http') ){
+    if( confirm('是否跳转到链接？\n' + text ) ) {
+      try{
+        window.open( text );
+      }catch(e){
+        alert( '抱歉，不能跳转。\n' + e.stack );
+      }
+    }
+  }
+  else {
+    alert( text );
+  }
+};
+
 const scanQrcode = ({
   srcUrl,
 }, tab) => {
@@ -44,7 +59,7 @@ const scanQrcode = ({
     // console.log( img );
     detect( img ).then( vals =>{
       if( vals && vals.length ){
-        alert(vals.join(','));
+        echo(vals.join(','));
       }
       else{
         console.log( '空');
@@ -53,12 +68,15 @@ const scanQrcode = ({
   });
 };
 
-chrome.contextMenus.create({
-  title: '识别二维码',
-  contexts: ["image"],
-  documentUrlPatterns: ['<all_urls>'],
-  onclick: scanQrcode,
-});
+if( window.BarcodeDetector ){
+  // https://developer.chrome.com/extensions/contextMenus
+  chrome.contextMenus.create({
+    title: '识别二维码',
+    contexts: ["image"],
+    documentUrlPatterns: ['<all_urls>'],
+    onclick: scanQrcode,
+  });
+}
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const {
