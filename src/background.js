@@ -1,7 +1,7 @@
 // chrome://flags/#enable-experimental-web-platform-features
-const detect = (img) => {
-  const barcodeDetector = new BarcodeDetector();
+let barcodeDetector = null;
 
+const detect = (img) => {
   return barcodeDetector.detect(img).then(barcodes => {
     return barcodes.map(barcode => {
       const {
@@ -10,7 +10,7 @@ const detect = (img) => {
       console.log('识别的二维码：', val);
       return val;
     });
-  }, () => {}).catch(err => console.error(err));
+  }).catch(err => alert(err));
 };
 
 const getImageDataByFile = (imageFile) => {
@@ -62,8 +62,8 @@ const scanQrcode = ({
       if (vals && vals.length) {
         echo(vals.join(','));
       } else {
-        console.log('空');
-        // 不知道为什么，需要两次重试才成功
+        // console.log('空');
+        // 不知道为什么，需要两次重试才成功 Mac Book
         detect(img).then(vals => {
           if (vals && vals.length) {
             echo(vals.join(','));
@@ -77,6 +77,8 @@ const scanQrcode = ({
 };
 
 if (window.BarcodeDetector) {
+  barcodeDetector = new BarcodeDetector();
+
   // https://developer.chrome.com/extensions/contextMenus
   chrome.contextMenus.create({
     title: '识别二维码',
@@ -102,5 +104,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.runtime.onInstalled.addListener((details) => {
   // details: {previousVersion: "1.0.2.3", reason: "update"}
-  chrome.tabs.create({ url: 'option.html' });
+  chrome.tabs.create({
+    url: 'option.html'
+  });
 });

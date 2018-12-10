@@ -13,6 +13,6 @@ URL 转二维码 (Chrome Extension)
 - 开启扫码功能依赖的`BarcodeDetector`接口：`chrome://flags/#enable-experimental-web-platform-features`
 
 
-## Installation ##
+## Installation
 
 [Chrome Web Store](https://chrome.google.com/webstore/detail/acedjabgpolnckckknijpejicghpfbnj "Chrome Web Store")
