@@ -63,6 +63,14 @@ const scanQrcode = ({
         echo(vals.join(','));
       } else {
         console.log('空');
+        // 不知道为什么，需要两次重试才成功
+        detect(img).then(vals => {
+          if (vals && vals.length) {
+            echo(vals.join(','));
+          } else {
+            console.log('空');
+          }
+        });
       }
     });
   });
