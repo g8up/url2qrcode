@@ -53,7 +53,7 @@ function debounce( fn, delay){
 }
 
 function prettySize( size ){
-	return new Array(2).fill(`${size}px`).join(' x ');
+	return new Array(2).fill(`${size}px`).join(' * ');
 }
 
 function showSize( size, x ){

@@ -99,3 +99,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       break;
   }
 });
+
+chrome.runtime.onInstalled.addListener((details) => {
+  // details: {previousVersion: "1.0.2.3", reason: "update"}
+  chrome.tabs.create({ url: 'option.html' });
+});
