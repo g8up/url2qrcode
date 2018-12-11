@@ -55,7 +55,6 @@ const scanQrcode = ({
     imageUrl: srcUrl,
   }, (base64data) => {
     // console.log(base64data);
-
     const img = createImage(base64data);
     // console.log( img );
     detect(img).then(vals => {
@@ -86,6 +85,9 @@ if (window.BarcodeDetector) {
     documentUrlPatterns: ['<all_urls>'],
     onclick: scanQrcode,
   });
+}
+else{
+  console.warn('[debug] BarcodeDetector 未定义');
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
