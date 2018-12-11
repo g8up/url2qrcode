@@ -1,3 +1,16 @@
+const I18N = (()=>{
+  const ui = Object.create(null);
+  [
+    'contextMenu',
+    'redirectConfirm',
+    'redirectError',
+  ].forEach( key => {
+    const message = chrome.i18n.getMessage( key );
+    ui[key] = message;
+  });
+  return ui;
+})();
+
 // chrome://flags/#enable-experimental-web-platform-features
 let barcodeDetector = null;
 
@@ -34,11 +47,11 @@ const createImage = (url) => {
 
 const echo = (text) => {
   if (text.startsWith('http')) {
-    if (confirm('是否跳转到链接？\n' + text)) {
+    if (confirm(`${I18N.redirectConfirm}\n${text}`)) {
       try {
         window.open(text);
       } catch (e) {
-        alert('抱歉，不能跳转。\n' + e.stack);
+        alert(`${redirectError}\n${e.stack}`);
       }
     }
   } else {
@@ -80,7 +93,7 @@ if (window.BarcodeDetector) {
 
   // https://developer.chrome.com/extensions/contextMenus
   chrome.contextMenus.create({
-    title: '识别二维码',
+    title: `${I18N.contextMenu}`,
     contexts: ["image"],
     documentUrlPatterns: ['<all_urls>'],
     onclick: scanQrcode,

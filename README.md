@@ -1,4 +1,4 @@
-# url2qrcode
+# URL2QRcode
 
 URL 转二维码 (Chrome Extension)
 
@@ -16,3 +16,7 @@ URL 转二维码 (Chrome Extension)
 ## Installation
 
 [Chrome Web Store](https://chrome.google.com/webstore/detail/acedjabgpolnckckknijpejicghpfbnj "Chrome Web Store")
+
+## Chrome Extension API
+- https://developer.chrome.com/extensions/i18n
+- https://developer.chrome.com/extensions/i18n-messages

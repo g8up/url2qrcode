@@ -7,5 +7,14 @@
   },
   "defaulttitle":{
     "message": "俺要把网址扫到手机里躺着看！！！"
+  },
+  "contextMenu": {
+    "message": "识别二维码"
+  },
+  "redirectConfirm": {
+    "message": "是否跳转到链接？"
+  },
+  "redirectError": {
+    "message": "抱歉，不能跳转。"
   }
 }

@@ -7,5 +7,14 @@
   },
   "defaulttitle":{
   	"message": "Convert the URL to QRcode."
+  },
+  "contextMenu": {
+    "message": "Scan QRcode"
+  },
+  "redirectConfirm": {
+    "message": "Direct to the link below？"
+  },
+  "redirectError": {
+    "message": "Sorry, fail to direct."
   }
 }
