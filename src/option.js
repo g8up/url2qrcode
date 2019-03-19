@@ -65,8 +65,6 @@ const pin = document.querySelector('#pin');
 const HistoryStoreKey = 'history';
 const HistoryStore = new Store(HistoryStoreKey);
 
-
-
 const $list = document.querySelector('#history');
 const $clearAll = document.querySelector('#clearAll');
 
@@ -82,6 +80,7 @@ history.bindEvent((text)=>{
 	genQrcode( text );
 });
 
+// 点击保存
 pin.addEventListener('click', ()=>{
 	const text = $anyText.value;
 	if( text !== ''){
