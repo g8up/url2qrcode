@@ -19,7 +19,10 @@ class History {
         html = list.sort((t1, t2)=>{
           return t2.timestamp - t1.timestamp;
         }).slice().map( record=>{
-          return `<li><span class="delete">&times;</span>${record.text}</li>`;
+          return `<li>
+            <span class="delete">&times;</span>
+            <span class="text">${record.text}</span>
+            </li>`;
         }).join('');
       }
       else{
@@ -34,10 +37,19 @@ class History {
       const {
         target,
       } = e;
-      const {
-        textContent,
-      } = target;
-      handle( textContent );
+      const classList = target.classList;
+      if( classList.contains('text')){
+        const {
+          textContent,
+        } = target;
+        handle( textContent );
+      }
+      else if( classList.contains('delete') ){
+        const text = target.parentNode.querySelector('.text').textContent;
+        this.delete( text ).then(()=>{
+          this.render();
+        });
+      }
     });
   }
 
