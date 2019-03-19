@@ -58,6 +58,43 @@
 	hr{
 		border: 0.5px solid #eee;
 	}
+	.two-col{
+		display: flex;
+		flex-direction: row;
+	}
+	.two-col > div{
+		flex: 1;
+	}
+	.left{
+		text-align: center;
+	}
+	.btn{
+		margin: 15px auto;
+		padding: 15px 30px;
+	}
+	#history{
+		max-height: 300px;
+		overflow-y: scroll;
+	}
+	#history li{
+		padding: 10px 15px;
+	}
+	#history li:hover{
+    background: aliceblue;
+	}
+	.delete{
+		padding: 10px 15px;
+    font-size: 2em;
+    border-radius: 50%;
+    border-width: 1px;
+    border-color: transparent;
+    border-style: solid;
+		cursor: default;
+	}
+	.delete:hover {
+		color: #F44336;
+    border-color: #00BCD4;
+	}
 	</style>
 </head>
 <body>
@@ -66,14 +103,16 @@
 	</section>
 
 	<section>
-		<div id="qrcodeImg"></div>
-		<button id="pin">PIN</button>
-	</section>
+		<div class="two-col">
+			<div class="left">
+				<div id="qrcodeImg"></div>
+				<button id="pin" class="btn">PIN</button>
+			</div>
 
-	<section>
-		<div class="history">
-			<ul id="history">
-			</ul>
+			<div class="history">
+				<ul id="history"></ul>
+				<button id="clearAll" class="btn">Clear All</button>
+			</div>
 		</div>
 	</section>
 

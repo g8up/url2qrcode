@@ -65,14 +65,10 @@ const pin = document.querySelector('#pin');
 const HistoryStoreKey = 'history';
 const HistoryStore = new Store(HistoryStoreKey);
 
-const saveRecord = ( text )=>{
-	return HistoryStore.get().then( (list=[]) =>{
-		list.push(text);
-		return HistoryStore.set(list);
-	});
-};
+
 
 const $list = document.querySelector('#history');
+const $clearAll = document.querySelector('#clearAll');
 
 const history = new History({
 	node: $list,
@@ -89,7 +85,15 @@ history.bindEvent((text)=>{
 pin.addEventListener('click', ()=>{
 	const text = $anyText.value;
 	if( text !== ''){
-		saveRecord( text ).then(()=>{
+		history.saveRecord( text ).then(()=>{
+			history.render();
+		});
+	}
+});
+
+$clearAll.addEventListener('click', ()=>{
+	if( confirm('Are you sure to Clear All ?') ){
+		history.clearAll().then(()=>{
 			history.render();
 		});
 	}
