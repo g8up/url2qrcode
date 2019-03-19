@@ -60,3 +60,37 @@ function showSize( size, x ){
 	$rangeResult.textContent = prettySize( size );
 	$rangeResult.style.left = x;
 }
+
+const pin = document.querySelector('#pin');
+const HistoryStoreKey = 'history';
+const HistoryStore = new Store(HistoryStoreKey);
+
+const saveRecord = ( text )=>{
+	return HistoryStore.get().then( (list=[]) =>{
+		list.push(text);
+		return HistoryStore.set(list);
+	});
+};
+
+const $list = document.querySelector('#history');
+
+const history = new History({
+	node: $list,
+	store: HistoryStore,
+});
+
+history.render();
+
+history.bindEvent((text)=>{
+	$anyText.value = text;
+	genQrcode( text );
+});
+
+pin.addEventListener('click', ()=>{
+	const text = $anyText.value;
+	if( text !== ''){
+		saveRecord( text ).then(()=>{
+			history.render();
+		});
+	}
+});
