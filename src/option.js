@@ -8,10 +8,10 @@ var qrcode = new QRCode( $qrcodeImg , {
 
 var $anyText = document.querySelector('#anyText');
 $anyText.addEventListener('blur', function(e){
-	genQrcode( this.value.trim() );
+	genQrcode( this.value );
 });
 $anyText.addEventListener('keypress', function(e){
-	e.which == 13 && genQrcode( this.value.trim() );
+	e.which == 13 && genQrcode( this.value );
 });
 
 var saveSize = debounce(function(size){
@@ -27,13 +27,17 @@ $sizeRange.addEventListener('input', function(e){
 	var y = e.pageY;
 	showSize( size , x, y);
 });
+
 var curSize = getSize();
 $sizeRange.value = curSize;
 showSize( curSize );
 
 function genQrcode( text ){
-	qrcode.makeCode( text );
-	$qrcodeImg.classList.toggle('rotate');
+	const msg = text.trim();
+	if( msg ) {
+		qrcode.makeCode( msg );
+		$qrcodeImg.classList.toggle('rotate');
+	}
 }
 
 function getSize(){
