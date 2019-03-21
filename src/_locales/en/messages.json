@@ -1,12 +1,12 @@
 {
   "appName": {
-    "message": "Url2qrCode"
+    "message": "Url2QRcode"
   },
   "appDesc": {
     "message": "Convert the URL to QRcode."
   },
   "defaulttitle":{
-  	"message": "Convert the URL to QRcode."
+    "message": "Convert the URL to QRcode."
   },
   "contextMenu": {
     "message": "Scan QRcode"
