@@ -67,17 +67,28 @@
 	}
 	.left{
 		text-align: center;
+		width: var(--qrSquare);
 	}
 	.btn{
 		margin: 15px auto;
 		padding: 15px 30px;
 	}
+	.history{
+		text-align: center;
+	}
 	#history{
-		max-height: 300px;
+		height: 280px;
 		overflow-y: scroll;
+		text-align: left;
 	}
 	#history li{
 		padding: 10px 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    /* width: 100%; */
+    display: block;
 	}
 	#history li:hover{
     background: aliceblue;
