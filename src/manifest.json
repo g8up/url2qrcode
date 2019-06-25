@@ -11,7 +11,6 @@
 	}],
 	"browser_action": {
 		"default_icon": "g8up.cn.png",
-		"default_title": "__MSG_defaulttitle__",
 		"default_popup": "popup.html"
 	},
 	"options_page": "option.html",
