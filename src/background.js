@@ -1,29 +1,71 @@
-const I18N = (()=>{
+const I18N = (() => {
   const ui = Object.create(null);
   [
     'contextMenu',
     'redirectConfirm',
     'redirectError',
-  ].forEach( key => {
-    const message = chrome.i18n.getMessage( key );
+  ].forEach(key => {
+    const message = chrome.i18n.getMessage(key);
     ui[key] = message;
   });
   return ui;
 })();
 
-// chrome://flags/#enable-experimental-web-platform-features
-let barcodeDetector = null;
-
 const detect = (img) => {
+  const barcodeDetector = new BarcodeDetector({
+    formats: ["qr_code"]
+  });
   return barcodeDetector.detect(img).then(barcodes => {
+    if (!barcodes.length) {
+      throw new Error('未识别到。');
+    }
     return barcodes.map(barcode => {
       const {
         rawValue: val,
       } = barcode;
       console.log('识别的二维码：', val);
-      return val;
+      if (val && val.length) {
+        return val;
+      } else {
+        throw new Error('未识别到。');
+      }
     });
-  }).catch(err => alert(err));
+  });
+};
+
+/** 多次重试 */
+const loopDetect = (img, loopCount) => {
+  console.log(`探测中：${loopCount}`);
+  return detect(img)
+    .catch(e => {
+      if (loopCount > 0) {
+        return loopDetect(img, loopCount - 1);
+      } else {
+        console.log('loopDetect error:', e);
+        throw e;
+      }
+    });
+};
+
+const scanQrcode = ({
+  srcUrl,
+}, tab) => {
+  console.log('图片 src：', srcUrl);
+  chrome.tabs.sendMessage(tab.id, {
+    action: 'get-base64data',
+    imageUrl: srcUrl,
+  }, (base64data) => {
+    // console.log(base64data);
+    const img = createImage(base64data);
+    // console.log( img );
+
+    // 不知道为什么，需要两次重试才成功 Mac Book
+    loopDetect(img, 3).then(vals => {
+      echo(vals.join(','));
+    }).catch(e => {
+      alert(e);
+    });
+  });
 };
 
 const getImageDataByFile = (imageFile) => {
@@ -59,38 +101,13 @@ const echo = (text) => {
   }
 };
 
-const scanQrcode = ({
-  srcUrl,
-}, tab) => {
-  console.log('图片 src：', srcUrl);
-  chrome.tabs.sendMessage(tab.id, {
-    action: 'get-base64data',
-    imageUrl: srcUrl,
-  }, (base64data) => {
-    // console.log(base64data);
-    const img = createImage(base64data);
-    // console.log( img );
-    detect(img).then(vals => {
-      if (vals && vals.length) {
-        echo(vals.join(','));
-      } else {
-        // console.log('空');
-        // 不知道为什么，需要两次重试才成功 Mac Book
-        detect(img).then(vals => {
-          if (vals && vals.length) {
-            echo(vals.join(','));
-          } else {
-            console.log('空');
-          }
-        });
-      }
-    });
-  });
-};
+if (!window.BarcodeDetector && BarcodeDetectorPolyfill) { // windows polyfill
+  BarcodeDetector = BarcodeDetectorPolyfill;
+}
 
+// https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/BarcodeDetector
+// chrome://flags/#enable-experimental-web-platform-features
 if (window.BarcodeDetector) {
-  barcodeDetector = new BarcodeDetector();
-
   // https://developer.chrome.com/extensions/contextMenus
   chrome.contextMenus.create({
     title: `${I18N.contextMenu}`,
@@ -98,8 +115,7 @@ if (window.BarcodeDetector) {
     documentUrlPatterns: ['<all_urls>'],
     onclick: scanQrcode,
   });
-}
-else{
+} else {
   console.warn('[debug] BarcodeDetector 未定义');
 }
 
@@ -120,6 +136,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.runtime.onInstalled.addListener((details) => {
   // details: {previousVersion: "1.0.2.3", reason: "update"}
   chrome.tabs.create({
-    url: 'option.html'
+    url: 'assets/option.html'
   });
 });
