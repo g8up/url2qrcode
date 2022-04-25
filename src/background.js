@@ -4,6 +4,7 @@ const I18N = (() => {
     'contextMenu',
     'redirectConfirm',
     'redirectError',
+    'notFound',
   ].forEach(key => {
     const message = chrome.i18n.getMessage(key);
     ui[key] = message;
@@ -16,8 +17,9 @@ const detect = (img) => {
     formats: ["qr_code"]
   });
   return barcodeDetector.detect(img).then(barcodes => {
+    const errMsg = `${I18N.notFound}`
     if (!barcodes.length) {
-      throw new Error('未识别到。');
+      throw new Error(errMsg);
     }
     return barcodes.map(barcode => {
       const {
@@ -27,7 +29,7 @@ const detect = (img) => {
       if (val && val.length) {
         return val;
       } else {
-        throw new Error('未识别到。');
+        throw new Error(errMsg);
       }
     });
   });

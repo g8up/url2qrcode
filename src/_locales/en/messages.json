@@ -5,7 +5,7 @@
   "appDesc": {
     "message": "Convert the URL to QRcode."
   },
-  "defaulttitle":{
+  "defaulttitle": {
     "message": "Convert the URL to QRcode."
   },
   "contextMenu": {
@@ -16,5 +16,8 @@
   },
   "redirectError": {
     "message": "Sorry, fail to direct."
+  },
+  "notFound": {
+    "message": "No QRcode is detected."
   }
 }

@@ -5,7 +5,7 @@
   "appDesc": {
     "message": "在电脑前坐着看网页真累，俺要把网址扫到手机里躺着看！"
   },
-  "defaulttitle":{
+  "defaulttitle": {
     "message": "俺要把网址扫到手机里躺着看！！！"
   },
   "contextMenu": {
@@ -16,5 +16,8 @@
   },
   "redirectError": {
     "message": "抱歉，不能跳转。"
+  },
+  "notFound": {
+    "message": "未识别到二维码。"
   }
 }
