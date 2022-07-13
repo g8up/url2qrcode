@@ -19,8 +19,8 @@ class History {
         html = list.sort((t1, t2)=>{
           return t2.timestamp - t1.timestamp;
         }).slice().map( record=>{
-          return `<li>
-            <span class="delete">&times;</span>
+          return `<li class="hover:bg-blue-100 align-middle	py-2">
+            <span class="delete text-justify text-gray-400 hover:text-red-500 px-2 font-semibold text-lg">&times;</span>
             <span class="text">${record.text}</span>
             </li>`;
         }).join('');

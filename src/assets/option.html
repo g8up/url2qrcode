@@ -1,153 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Url2Qrcode</title>
   <style>
-  :root{
-    --qrSquare: 300px;
-  }
+    :root {
+      --qrSquare: 300px;
+    }
 
-  section{
-    padding: 15px;
-    width: 80%;
-    margin:0 auto;
-  }
+    #qrcodeImg {
+      width: var(--qrSquare);
+      height: var(--qrSquare);
+      background: #eee;
+      transition: transform .3s;
+    }
 
-  #qrcodeImg{
-    width: var(--qrSquare);
-    height: var(--qrSquare);
-    background: #eee;
-    margin: 0 auto;
-    transition: transform .3s;
-  }
+    .rotate {
+      transform: rotateZ(360deg);
+    }
 
-  #anyText{
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    padding: 10px 16px;
-    font-size: 3em;
-    outline: none;
-    display: block;
-  }
-  .rotate{
-    transform: rotateZ(360deg);
-  }
-  .range{
-    display: flex;
-  }
-  #rangeResult{
-    font-size: 2em;
-    width: 200px;
-    text-align: center;
-  }
-  #sizeRange{
-    display: block;
-    margin:0 auto;
-    flex: 1;
-  }
-  .chrome-url{
-    border: 1px solid #ddd;
-    background: #eee;
-    padding: 3px;
-    border-radius: 4px;
-    color: #333;
-  }
-  hr{
-    border: 0.5px solid #eee;
-  }
-  .two-col{
-    display: flex;
-    flex-direction: row;
-  }
-  .two-col > div{
-    flex: 1;
-  }
-  .left{
-    text-align: center;
-    width: var(--qrSquare);
-  }
-  .btn{
-    margin: 15px auto;
-    padding: 15px 30px;
-  }
-  .history{
-    text-align: center;
-  }
-  #history{
-    height: 280px;
-    overflow-y: scroll;
-    text-align: left;
-  }
-  #history li{
-    padding: 10px 15px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    box-sizing: border-box;
-    /* width: 100%; */
-    display: block;
-  }
-  #history li:hover{
-    background: aliceblue;
-  }
-  .delete{
-    padding: 10px 15px;
-    font-size: 2em;
-    border-radius: 50%;
-    border-width: 1px;
-    border-color: transparent;
-    border-style: solid;
-    cursor: default;
-  }
-  .delete:hover {
-    color: #F44336;
-    border-color: #00BCD4;
-  }
+    .chrome-url {
+      border: 1px solid #ddd;
+      background: #eee;
+      padding: 3px;
+      border-radius: 4px;
+      color: #333;
+    }
+
+    hr {
+      border: 0.5px solid #eee;
+    }
+
+    .history {
+      text-align: center;
+    }
+
+    #history {
+      height: 280px;
+      overflow-y: scroll;
+      text-align: left;
+    }
+
+    #history li {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      /* width: 100%; */
+      display: block;
+    }
   </style>
+  <link href="./tailwind.min.css" rel="stylesheet">
 </head>
+
 <body>
-  <section>
-    <input id="anyText" type="text" placeholder="Any text here" autofocus="true">
-  </section>
+  <div class="container mx-auto px-4 text-gray-900">
+    <section class="my-4">
+      <input id="anyText" class="text-3xl border-2 rounded-md w-full p-1" type="text" placeholder="Any text here"
+        autofocus="true">
+    </section>
 
-  <section>
-    <div class="two-col">
-      <div class="left">
-        <div id="qrcodeImg"></div>
-        <button id="pin" class="btn">PIN</button>
+    <section>
+      <div class="flex">
+        <div class="left flex-initial text-center">
+          <div id="qrcodeImg"></div>
+        </div>
+
+        <div class="history flex-1 pl-1">
+          <ul id="history" class="text-base">
+            <li class="hover:bg-blue-100 align-middle	py-2">
+              <span class="delete text-justify text-gray-400 hover:text-red-500 px-2 font-semibold text-lg">×</span>
+              <span class="text">https://getcrx.cn</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="history">
-        <ul id="history"></ul>
-        <button id="clearAll" class="btn">Clear All</button>
+      <div class="flex mt-2">
+        <div class="text-center" style="width: var(--qrSquare);">
+          <button id="pin" class="bg-blue-500 text-white rounded-md px-3 py-2 ">PIN</button>
+        </div>
+        <div class="flex-1 text-center">
+          <button id="clearAll" class="bg-blue-500 text-white rounded-md px-3 py-2">Clear All</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h1>Customize QRcode size in Popup-page</h1>
-    <div class="range">
-      <div id="rangeResult"></div>
-      <input id="sizeRange" type="range" min="100" max="570">
-    </div>
-  </section>
+    <section class="my-4 text-base">
+      <h1 class="text-xl font-semibold">Customize QRcode size in Popup-page</h1>
+      <div class="flex">
+        <div id="rangeResult" class="flex-initial pr-5"></div>
+        <input id="sizeRange" class="flex-1" type="range" min="100" max="570">
+      </div>
+    </section>
 
-  <section>
-    <h1>Help</h1>
-    <p>Q: How to open this page ?</p>
-    <p>A: Right click the extension icon on the top right, and select `optoins`.</p>
-    <hr>
-    <p>Q: How to enable scanner function?</p>
-    <p>A: Open <span class="chrome-url">chrome://flags/#enable-experimental-web-platform-features</span> in Chrome, and enable it, and then relaunch Chrome.（ BTW: This function may not totally support on your Chrome Browser.）</p>
-  </section>
+    <section class="my-4 text-base">
+      <h1 class="text-xl font-semibold">Help</h1>
+      <p class="font-semibold">Q: How to open this page ?</p>
+      <p>A: Right click the extension icon on the top right, and select `optoins`.</p>
+      <hr>
+      <p class="font-semibold">Q: How to enable scanner function?</p>
+      <p>A: Open <span class="chrome-url">chrome://flags/#enable-experimental-web-platform-features</span> in Chrome,
+        and
+        enable it, and then relaunch Chrome.（ BTW: This function may not totally support on your Chrome Browser.）</p>
+    </section>
 
-  <script src="./qrcode.min.js"></script>
-  <script src="../util/chrome.util.js"></script>
-  <script src="../history.js"></script>
-  <script src="../option.js"></script>
-
+    <script src="./qrcode.min.js"></script>
+    <script src="../util/chrome.util.js"></script>
+    <script src="../history.js"></script>
+    <script src="../option.js"></script>
+  </div>
 </body>
+
 </html>
