@@ -1,1 +1,4 @@
+node_modules/
+
 *.zip
+crx/assets/css/

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply bg-blue-500 text-white rounded-md px-3 py-2;
+}
+
+.badge {
+  border: 1px solid #ddd;
+  background: #eee;
+  border-radius: 4px;
+  color: #333;
+
+  @apply px-1 px-1;
+}
