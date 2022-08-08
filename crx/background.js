@@ -137,7 +137,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.runtime.onInstalled.addListener((details) => {
   // details: {previousVersion: "1.0.2.3", reason: "update"}
-  chrome.tabs.create({
-    url: 'assets/option.html'
-  });
+  chrome.runtime.openOptionsPage();
 });
