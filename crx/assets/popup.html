@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title> QRcode </title>
     <meta name="description" content="获取当前页面 URL 的二维码">
-    <meta name="author" content="getcrx.cn">
+    <meta name="author" content="g8up@qq.com">
   </head>
   <style type="text/css">
     html,
@@ -14,39 +14,51 @@
     body{
       margin-bottom: 2px;
     }
-    @-webkit-keyframes sigma{
-      0%   {opacity:0.2;-webkit-transform:rotate(270deg) scale(2);}
-      100% {opacity:1;-webkit-transform:rotate(360deg) scale(1);}
+    @keyframes sigma{
+      0%   {opacity:0.2;transform:rotate(270deg) scale(2);}
+      100% {opacity:1;transform:rotate(360deg) scale(1);}
     }
-    @-webkit-keyframes AuthorInfo{
+    @keyframes AuthorInfo{
       0%{opacity:0;}
       100%{opacity:1;}
     }
     #qrcode{
-      -webkit-transform-origin:center;
-      -webkit-animation:sigma 1s;
+      transform-origin:center;
+      animation:sigma 1s;
       overflow: hidden;
+      z-index: 1;
     }
-    a.mysite{
+    a{
       text-decoration:none;
       color:#e0e0e0;
       font-family:"微软雅黑","黑体";
       font-size:12px;
-      float:right;
-      -webkit-animation:AuthorInfo 2s;
+      animation:AuthorInfo 2s;
       outline: none;
     }
-    a.mysite:hover{
+    a:hover{
       color:#505050;
     }
     :root{
       --size: 300px;
     }
+    .link{
+      display: flex;
+      justify-content: space-between;
+      z-index: 0;
+    }
+    #qrcode, .link{
+      position: relative;
+    }
   </style>
 
   <body>
     <div id="qrcode"></div>
-    <a class="mysite" href="http://getcrx.cn" target="_blank">getcrx.cn</a>
+
+    <div class="link">
+      <a class="option" href="javascript:;" target="_blank" title="Open Option Page">Option</a>
+      <a class="mysite" href="http://getcrx.cn" target="_blank">getcrx.cn</a>
+    </div>
 
     <script src="./qrcode.min.js"></script>
     <script src="../g8up.cn.js"></script>
