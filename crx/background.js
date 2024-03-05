@@ -1,3 +1,5 @@
+import "./barcode-detector.umd.js";
+
 const I18N = (() => {
   const ui = Object.create(null);
   [

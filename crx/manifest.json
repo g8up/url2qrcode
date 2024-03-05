@@ -1,11 +1,9 @@
 {
-  "manifest_version": 2,
-  "version": "2.5.1",
+  "manifest_version": 3,
+  "version": "3.0.0",
   "background": {
-    "scripts": [
-      "barcode-detector.umd.js",
-      "./background.js"
-    ]
+    "scrservice_worker": "./background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
@@ -18,13 +16,16 @@
       ]
     }
   ],
-  "browser_action": {
-    "default_icon": "assets/g8up.cn.png",
-    "default_popup": "assets/popup.html"
+  "action": {
+    "default_icon": {
+      "128": "assets/g8up.cn.png"
+    },
+    "default_popup": "assets/popup.html",
+    "default_title": "qrcode"
   },
   "options_page": "assets/option.html",
   "icons": {
-    "128": "assets/g8up-cn.png"
+    "128": "assets/g8up.cn.png"
   },
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
