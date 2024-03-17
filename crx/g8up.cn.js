@@ -12,6 +12,7 @@ function getSize() {
 chrome.tabs.query(
   {
     active: true,
+    currentWindow: true,
   },
   function ([tab]) {
     var $qrcode = document.querySelector('#qrcode');
