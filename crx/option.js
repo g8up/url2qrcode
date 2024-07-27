@@ -86,7 +86,7 @@ history.bindEvent((text)=>{
 
 // 点击保存
 pin.addEventListener('click', ()=>{
-	const text = $anyText.value;
+	const text = qrcode._oQRCode.dataList[0].data;
 	if( text !== ''){
 		history.saveRecord( text ).then(()=>{
 			history.render();

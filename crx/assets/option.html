@@ -35,6 +35,15 @@
     <section class="my-4">
       <input id="anyText" class="text-3xl border-2 rounded-md w-full p-1" type="text" placeholder="Any text here"
         autofocus="true">
+        <div class="my-1">
+          <label>
+            SSID: <input type="text" id="ssid" class="text-xl border">
+          </label>
+          <label>
+            Password: <input type="text" id="pass" class="text-xl border">
+          </label>
+          <button type="button" id="genWifiQrCode" class="px-2"> Generate</button>
+        </div>
     </section>
 
     <section>
@@ -87,6 +96,7 @@
     <script src="../util/chrome.util.js"></script>
     <script src="../history.js"></script>
     <script src="../option.js"></script>
+    <script src="../wifi.js"></script>
   </div>
 </body>
 
