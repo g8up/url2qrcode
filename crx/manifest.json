@@ -1,13 +1,16 @@
 {
   "manifest_version": 3,
-  "version": "3.1.0",
+  "version": "3.2.0",
   "background": {
-    "scrservice_worker": "./background.js",
+    "scrservice_worker": "./bg.js",
     "type": "module"
   },
   "content_scripts": [
     {
       "js": [
+        "./initzbar.js",
+        "./libs/zbar-wasm.js",
+        "./libs/barcode-detector-polyfill.js",
         "./content.js"
       ],
       "matches": [
@@ -25,12 +28,23 @@
   },
   "options_page": "assets/option.html",
   "icons": {
+    "16": "assets/g8up.cn.png",
     "128": "assets/g8up.cn.png"
   },
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "offline_enabled": true,
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "libs/zbar.wasm"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ],
   "permissions": [
     "tabs",
     "contextMenus",

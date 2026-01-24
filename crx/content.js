@@ -1,50 +1,62 @@
-const getImageDataByUrl = (url) => {
+console.log(Module)
+try {
+  window['BarcodeDetector'].getSupportedFormats()
+} catch {
+  window['BarcodeDetector'] = barcodeDetectorPolyfill.BarcodeDetectorPolyfill
+}
+
+const detector = new BarcodeDetector()
+const getImageDataByUrl = url => {
   return new Promise((resolve, reject) => {
-    var img = new Image();
+    var img = new Image()
     // SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported.
-    img.crossOrigin = "anonymous";
+    img.crossOrigin = 'anonymous'
 
     img.onload = function () {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
+      const canvas = document.createElement('canvas')
+      canvas.width = img.naturalWidth
+      canvas.height = img.naturalHeight
 
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0)
 
       try {
-        const data = canvas.toDataURL();
-        resolve(data);
+        const data = canvas.toDataURL()
+        resolve(data)
       } catch (e) {
         // Handle errors here
-        alert(e);
+        alert(e)
       }
-    };
+    }
 
     img.onerror = () => {
       reject(`图片无法被提取。`)
-    };
+    }
 
-    img.src = url;
-  });
-};
+    img.src = url
+  })
+}
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  const {
-    action,
-    imageUrl,
-  } = request;
+  const { action, imageUrl } = request
   switch (action) {
     case 'get-base64data':
-      getImageDataByUrl(imageUrl).then(data => {
-          sendResponse(data);
+      getImageDataByUrl(imageUrl)
+        .then(data => {
+          detector(data).then(symbols => {
+            console.log(symbols)
+          })
+          sendResponse(data)
         })
         .catch(e => {
-          alert(e);
-        });
-      return true;
-      break;
+          alert(e)
+        })
+      return true
+      break
+    case 'detect':
+      detector(imageUrl)
+      break
     default:
-      break;
+      break
   }
-});
+})
